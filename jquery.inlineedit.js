@@ -1,11 +1,13 @@
 /*
  * jQuery inlineEdit
  *
- * Copyright (c) 2009 Ca-Phun Ung <caphun at yelotofu dot com>
- * Licensed under the MIT (MIT-LICENSE.txt) license.
+ * https://github.com/jurka/jquery.inlineedit
  *
+ * Based on :
  * http://github.com/caphun/jquery.inlineedit/
- *
+ * 
+ * Licensed under the MIT (MIT-LICENSE.txt) license.
+
  * Inline (in-place) editing.
  */
 
@@ -85,6 +87,7 @@ $.inlineEdit.defaults = {
     buttons: '<button class="save">save</button> <button class="cancel">cancel</button>',
     placeholder: 'Click to edit',
     control: 'input',
+    controlClass: '',
     cancelOnBlur: false,
     saveOnBlur: false
 };
@@ -220,10 +223,10 @@ $.inlineEdit.prototype = {
 
     controls: {
         textarea: function( value ) {
-            return '<textarea>'+ value.replace(/<br\s?\/?>/g,"\n") +'</textarea>' + this.buttonHtml( { before: '<br />' } );
+            return '<textarea class="' + this.options.controlClass + '">'+ value.replace(/<br\s?\/?>/g,"\n") +'</textarea>' + this.buttonHtml( { before: '<br />' } );
         },
         input: function( value ) {
-            return '<input type="text" value="'+ value.replace(/(\u0022)+/g, '') +'"/>' + this.buttonHtml();
+            return '<input type="text" class="' + this.options.controlClass + '" value="'+ value.replace(/(\u0022)+/g, '') +'"/>' + this.buttonHtml();
         }
     },
 
